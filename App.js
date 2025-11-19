@@ -3,6 +3,7 @@ import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, Text, View } from 'react-native';
 import Header from './src/components/layouts/Header';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
+import CarsContainer from './src/components/containers/CarsContainer';
 
 const theme = createTheme({
   lightColors: {
@@ -23,6 +24,7 @@ const App = () => {
     <ThemeProvider>
       <SafeAreaProvider>
         <Header></Header>
+        <CarsContainer></CarsContainer>
       </SafeAreaProvider>
       <StatusBar style="light" />
     </ThemeProvider>
