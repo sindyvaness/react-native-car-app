@@ -1,18 +1,33 @@
 import { useState, useEffect } from "react";
 import { ListItem } from "@rneui/themed";
 import { Ionicons } from "@expo/vector-icons";
+import { carsApi } from "../../services/carsApi";
 
 const BrandForm = ( props ) => {
     const { onBrandChange } = props;
-    const [brands, setBrands] = useState(["Ferrari", "Porshe"]);
+    const [brands, setBrands] = useState([]);
     const [expanded, setExpanded] = useState(false);
     const [selectedBrand, setSelectedBrand] = useState('');
 
 
     useEffect(() => {
         // here call the api to get the brands
-        // setBrands(brands);
+        fetchBrands();
     }, []);
+
+    const fetchBrands = async () => {
+        try {
+            const brands = await carsApi.getBrands();
+
+            if (brands) {
+                setBrands(brands.data);
+            } else {
+                console.log("No brands fetched");
+            }
+        } catch (error) {
+            console.log("Error getting the brands: ", error);
+        }
+    };
 
     return(
         <ListItem.Accordion
@@ -29,7 +44,7 @@ const BrandForm = ( props ) => {
                 setExpanded(!expanded);
             }}
         >
-            {brands.map((brand, index) => (
+            { brands && brands.length > 0 ? (brands.map((brand, index) => (
                 <ListItem key={index} 
                     onPress={ () => { 
                         onBrandChange(brand); 
@@ -41,7 +56,17 @@ const BrandForm = ( props ) => {
                     </ListItem.Content>
                     <ListItem.Chevron />
                 </ListItem>
-            ))}
+            ))) : 
+            <ListItem key={0} 
+                    onPress={ () => {
+                        setExpanded(!expanded);} }
+                    bottomDivider>
+                    <ListItem.Content>
+                        <ListItem.Title>No brands gotten...</ListItem.Title>
+                    </ListItem.Content>
+                    <ListItem.Chevron />
+                </ListItem>
+        }
         </ListItem.Accordion>
     );
 };
