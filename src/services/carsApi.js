@@ -11,5 +11,6 @@ const api = axios.create({
 });
 
 export const carsApi = {
-    getBrands: () => api.get('brands')
+    getBrands: () => api.get('/brands'),
+    getByBrand: (brand) => api.get(`/bybrand/${encodeURIComponent(brand)}`)
 };

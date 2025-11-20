@@ -34,7 +34,7 @@ const BrandForm = ( props ) => {
             content={
                 <>
                 <Ionicons name="search" size={20} />
-                <ListItem.Content>
+                <ListItem.Content style={{marginLeft: 20}}>
                     <ListItem.Title>{ selectedBrand || 'Select a Brand...'}</ListItem.Title>
                 </ListItem.Content>
                 </>
