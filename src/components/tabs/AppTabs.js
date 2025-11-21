@@ -18,6 +18,7 @@ const AppTabs = () => (
             safeAreaInsets: { top: 0, bottom: 0 }
       }}
         >
+            <Tab.Screen name="ListByBrand" component={ListByBrandStack} />
         </Tab.Navigator>
     </NavigationContainer>
 );

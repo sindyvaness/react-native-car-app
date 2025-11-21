@@ -4,6 +4,7 @@ import { StyleSheet, Text, View } from 'react-native';
 import Header from './src/components/layouts/Header';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
 import CarsContainer from './src/components/containers/CarsContainer';
+import AppTabs from './src/components/tabs/AppTabs';
 
 const theme = createTheme({
   lightColors: {
@@ -24,7 +25,7 @@ const App = () => {
     <ThemeProvider>
       <SafeAreaProvider>
         <Header></Header>
-        <CarsContainer></CarsContainer>
+        <AppTabs></AppTabs>
       </SafeAreaProvider>
       <StatusBar style="light" />
     </ThemeProvider>
